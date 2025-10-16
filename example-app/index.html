@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@capgo/capacitor-live-reload Example</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>@capgo/capacitor-live-reload Example</h1>
+      <p class="lead">Connect to a remote Vite dev server and observe live reload hooks.</p>
+      <button id="quick-connect">Connect to local Vite (http://localhost:5173)</button>
+      <label for="action-select">Available actions</label>
+      <select id="action-select"></select>
+      <div id="action-description" class="action-description"></div>
+      <div id="action-form" class="form-grid"></div>
+      <button id="run-action">Run action</button>
+      <pre id="plugin-output">Select an action to begin.</pre>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

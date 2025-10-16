@@ -1,0 +1,10 @@
+{
+  "appId": "app.capgo.livereload",
+  "appName": "Live Reload Example",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
