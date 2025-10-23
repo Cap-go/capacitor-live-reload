@@ -47,6 +47,7 @@ LiveReload.addListener('reloadEvent', (event) => {
 * [`addListener('reloadEvent', ...)`](#addlistenerreloadevent-)
 * [`addListener('statusChange', ...)`](#addlistenerstatuschange-)
 * [`removeAllListeners()`](#removealllisteners)
+* [`getPluginVersion()`](#getpluginversion)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -180,6 +181,19 @@ removeAllListeners() => Promise<void>
 ```
 
 Remove all registered listeners.
+
+--------------------
+
+
+### getPluginVersion()
+
+```typescript
+getPluginVersion() => Promise<{ version: string; }>
+```
+
+Get the native Capacitor plugin version
+
+**Returns:** <code>Promise&lt;{ version: string; }&gt;</code>
 
 --------------------
 
