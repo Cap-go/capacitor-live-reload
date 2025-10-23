@@ -4,6 +4,7 @@ import UIKit
 
 @objc(LiveReloadPlugin)
 public class LiveReloadPlugin: CAPPlugin, CAPBridgedPlugin {
+    private let PLUGIN_VERSION: String = ""
     public let identifier = "LiveReloadPlugin"
     public let jsName = "LiveReload"
     public let pluginMethods: [CAPPluginMethod] = [
@@ -12,7 +13,8 @@ public class LiveReloadPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "disconnect", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "getStatus", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "reload", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "reloadFile", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "reloadFile", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "getPluginVersion", returnType: CAPPluginReturnPromise)
     ]
 
     private var configuration = LiveReloadConfiguration()
@@ -379,4 +381,9 @@ private extension String {
         guard let data = data(using: .utf8) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
     }
+
+    @objc func getPluginVersion(_ call: CAPPluginCall) {
+        call.resolve(["version": self.PLUGIN_VERSION])
+    }
+
 }

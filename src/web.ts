@@ -1,5 +1,4 @@
 import { WebPlugin } from '@capacitor/core';
-
 import type { PluginListenerHandle } from '@capacitor/core';
 
 import type {
@@ -65,7 +64,10 @@ export class LiveReloadWeb extends WebPlugin implements LiveReloadPlugin {
 
   async addListener(eventName: 'reloadEvent', listenerFunc: LiveReloadEventCallback): Promise<PluginListenerHandle>;
   async addListener(eventName: 'statusChange', listenerFunc: LiveReloadStatusCallback): Promise<PluginListenerHandle>;
-  async addListener(eventName: string, listenerFunc: LiveReloadEventCallback | LiveReloadStatusCallback): Promise<PluginListenerHandle> {
+  async addListener(
+    eventName: string,
+    listenerFunc: LiveReloadEventCallback | LiveReloadStatusCallback,
+  ): Promise<PluginListenerHandle> {
     return super.addListener(eventName, listenerFunc as (...args: any[]) => void);
   }
 
@@ -75,5 +77,9 @@ export class LiveReloadWeb extends WebPlugin implements LiveReloadPlugin {
 
   private notifyStatus() {
     this.notifyListeners('statusChange', this.status);
+  }
+
+  async getPluginVersion(): Promise<{ version: string }> {
+    return { version: 'web' };
   }
 }

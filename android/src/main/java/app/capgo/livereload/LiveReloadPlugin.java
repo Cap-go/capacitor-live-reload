@@ -29,12 +29,12 @@ import org.json.JSONObject;
 @CapacitorPlugin(name = "LiveReload")
 public class LiveReloadPlugin extends Plugin {
 
+    private final String PLUGIN_VERSION = "";
+
     private static final String TAG = "LiveReload";
 
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
-    private final OkHttpClient client = new OkHttpClient.Builder()
-        .pingInterval(15, TimeUnit.SECONDS)
-        .build();
+    private final OkHttpClient client = new OkHttpClient.Builder().pingInterval(15, TimeUnit.SECONDS).build();
 
     private WebSocket socket;
     private String serverUrl;
@@ -212,15 +212,13 @@ public class LiveReloadPlugin extends Plugin {
         }
         final WebView targetWebView = webView;
         final String targetUrl = usingLiveReload ? serverUrl : null;
-        mainHandler.post(
-            () -> {
-                if (usingLiveReload && targetUrl != null) {
-                    targetWebView.loadUrl(targetUrl);
-                } else {
-                    targetWebView.reload();
-                }
+        mainHandler.post(() -> {
+            if (usingLiveReload && targetUrl != null) {
+                targetWebView.loadUrl(targetUrl);
+            } else {
+                targetWebView.reload();
             }
-        );
+        });
     }
 
     private JSObject createEvent(String type, @Nullable JSObject payload, @Nullable String message) {
@@ -325,13 +323,11 @@ public class LiveReloadPlugin extends Plugin {
                 initialUrl = webView.getUrl();
             }
         } else {
-            mainHandler.post(
-                () -> {
-                    if (initialUrl == null) {
-                        initialUrl = webView.getUrl();
-                    }
+            mainHandler.post(() -> {
+                if (initialUrl == null) {
+                    initialUrl = webView.getUrl();
                 }
-            );
+            });
         }
     }
 
@@ -345,19 +341,17 @@ public class LiveReloadPlugin extends Plugin {
         }
         final WebView targetWebView = webView;
         final String targetUrl = serverUrl;
-        mainHandler.post(
-            () -> {
-                if (initialUrl == null) {
-                    initialUrl = targetWebView.getUrl();
-                }
-                if (usingLiveReload) {
-                    targetWebView.reload();
-                } else {
-                    usingLiveReload = true;
-                    targetWebView.loadUrl(targetUrl);
-                }
+        mainHandler.post(() -> {
+            if (initialUrl == null) {
+                initialUrl = targetWebView.getUrl();
             }
-        );
+            if (usingLiveReload) {
+                targetWebView.reload();
+            } else {
+                usingLiveReload = true;
+                targetWebView.loadUrl(targetUrl);
+            }
+        });
     }
 
     private void restoreOriginalContent() {
@@ -367,20 +361,18 @@ public class LiveReloadPlugin extends Plugin {
             return;
         }
         final WebView targetWebView = webView;
-        mainHandler.post(
-            () -> {
-                usingLiveReload = false;
-                String target = initialUrl;
-                if (target == null) {
-                    target = getBridge().getServerUrl();
-                }
-                if (target != null) {
-                    targetWebView.loadUrl(target);
-                } else {
-                    targetWebView.reload();
-                }
+        mainHandler.post(() -> {
+            usingLiveReload = false;
+            String target = initialUrl;
+            if (target == null) {
+                target = getBridge().getServerUrl();
             }
-        );
+            if (target != null) {
+                targetWebView.loadUrl(target);
+            } else {
+                targetWebView.reload();
+            }
+        });
     }
 
     private void showDisconnectedDialog(@Nullable String reason) {
@@ -392,43 +384,35 @@ public class LiveReloadPlugin extends Plugin {
             return;
         }
         final Activity currentActivity = activity;
-        mainHandler.post(
-            () -> {
-                if (disconnectDialog != null || manualDisconnect) {
-                    return;
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(currentActivity);
-                builder.setTitle("Live Reload Disconnected");
-                StringBuilder message = new StringBuilder("The connection to the live reload server was lost.");
-                if (reason != null && !reason.isEmpty()) {
-                    message.append('\n').append('\n').append("Details: ").append(reason);
-                }
-                message.append('\n').append('\n').append("Close restores the original bundle. Reload tries to reconnect.");
-                builder.setMessage(message.toString());
-                builder.setCancelable(false);
-                builder.setNegativeButton(
-                    "Close",
-                    (dialog, which) -> {
-                        manualDisconnect = true;
-                        disconnectDialog = null;
-                        disconnectSocket(true);
-                        restoreOriginalContent();
-                    }
-                );
-                builder.setPositiveButton(
-                    "Reload",
-                    (dialog, which) -> {
-                        manualDisconnect = false;
-                        disconnectDialog = null;
-                        reloadWebView();
-                        openSocket();
-                    }
-                );
-                builder.setOnDismissListener(dialog -> disconnectDialog = null);
-                disconnectDialog = builder.create();
-                disconnectDialog.show();
+        mainHandler.post(() -> {
+            if (disconnectDialog != null || manualDisconnect) {
+                return;
             }
-        );
+            AlertDialog.Builder builder = new AlertDialog.Builder(currentActivity);
+            builder.setTitle("Live Reload Disconnected");
+            StringBuilder message = new StringBuilder("The connection to the live reload server was lost.");
+            if (reason != null && !reason.isEmpty()) {
+                message.append('\n').append('\n').append("Details: ").append(reason);
+            }
+            message.append('\n').append('\n').append("Close restores the original bundle. Reload tries to reconnect.");
+            builder.setMessage(message.toString());
+            builder.setCancelable(false);
+            builder.setNegativeButton("Close", (dialog, which) -> {
+                manualDisconnect = true;
+                disconnectDialog = null;
+                disconnectSocket(true);
+                restoreOriginalContent();
+            });
+            builder.setPositiveButton("Reload", (dialog, which) -> {
+                manualDisconnect = false;
+                disconnectDialog = null;
+                reloadWebView();
+                openSocket();
+            });
+            builder.setOnDismissListener((dialog) -> disconnectDialog = null);
+            disconnectDialog = builder.create();
+            disconnectDialog.show();
+        });
     }
 
     private void hideDisconnectedDialog() {
@@ -436,14 +420,23 @@ public class LiveReloadPlugin extends Plugin {
         if (dialog == null) {
             return;
         }
-        mainHandler.post(
-            () -> {
-                AlertDialog current = disconnectDialog;
-                if (current != null && current.isShowing()) {
-                    current.dismiss();
-                }
-                disconnectDialog = null;
+        mainHandler.post(() -> {
+            AlertDialog current = disconnectDialog;
+            if (current != null && current.isShowing()) {
+                current.dismiss();
             }
-        );
+            disconnectDialog = null;
+        });
+    }
+
+    @PluginMethod
+    public void getPluginVersion(final PluginCall call) {
+        try {
+            final JSObject ret = new JSObject();
+            ret.put("version", this.PLUGIN_VERSION);
+            call.resolve(ret);
+        } catch (final Exception e) {
+            call.reject("Could not get plugin version", e);
+        }
     }
 }
