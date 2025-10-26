@@ -12,6 +12,10 @@ Live reload your Capacitor app from a remote Vite (or compatible) dev server.
 > **Note**
 > Configure your Vite dev server to disable the built-in HMR client and forward reload events (e.g. JSON payloads `{ "type": "full-reload" }` or `{ "type": "file-update", "path": "..." }`) over a dedicated WebSocket endpoint such as `/capgo-livereload`.
 
+## Documentation
+
+The most complete doc is available here: https://capgo.app/docs/plugins/live-reload/
+
 ## Install
 
 ```bash
