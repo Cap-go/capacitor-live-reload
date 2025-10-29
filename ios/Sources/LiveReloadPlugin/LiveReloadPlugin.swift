@@ -311,6 +311,10 @@ public class LiveReloadPlugin: CAPPlugin, CAPBridgedPlugin {
         if let message { event["message"] = message }
         notifyListeners("reloadEvent", data: event)
     }
+
+    @objc func getPluginVersion(_ call: CAPPluginCall) {
+        call.resolve(["version": self.PLUGIN_VERSION])
+    }
 }
 
 // MARK: - URLSessionWebSocketDelegate
@@ -381,9 +385,4 @@ private extension String {
         guard let data = data(using: .utf8) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
     }
-
-    @objc func getPluginVersion(_ call: CAPPluginCall) {
-        call.resolve(["version": self.PLUGIN_VERSION])
-    }
-
 }
