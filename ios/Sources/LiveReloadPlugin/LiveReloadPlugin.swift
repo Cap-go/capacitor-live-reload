@@ -4,7 +4,7 @@ import UIKit
 
 @objc(LiveReloadPlugin)
 public class LiveReloadPlugin: CAPPlugin, CAPBridgedPlugin {
-    private let PLUGIN_VERSION: String = "7.0.0"
+    private let pluginVersion: String = "7.0.0"
     public let identifier = "LiveReloadPlugin"
     public let jsName = "LiveReload"
     public let pluginMethods: [CAPPluginMethod] = [
@@ -313,7 +313,7 @@ public class LiveReloadPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func getPluginVersion(_ call: CAPPluginCall) {
-        call.resolve(["version": self.PLUGIN_VERSION])
+        call.resolve(["version": self.pluginVersion])
     }
 }
 
