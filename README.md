@@ -7,7 +7,7 @@
 </div>
 
 
-Live reload your Capacitor app from a remote Vite (or compatible) dev server.
+WIP: Live reload your Capacitor app from a remote Vite (or compatible) dev server.
 
 > **Note**
 > Configure your Vite dev server to disable the built-in HMR client and forward reload events (e.g. JSON payloads `{ "type": "full-reload" }` or `{ "type": "file-update", "path": "..." }`) over a dedicated WebSocket endpoint such as `/capgo-livereload`.
@@ -255,7 +255,9 @@ Get the native Capacitor plugin version
 
 Construct a type with a set of properties K of type T
 
-<code>{ [P in K]: T; }</code>
+<code>{
+ [P in K]: T;
+ }</code>
 
 
 #### LiveReloadEventCallback
