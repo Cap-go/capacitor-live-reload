@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.1](https://github.com/Cap-go/capacitor-live-reload/compare/7.1.0...7.1.1) (2025-10-31)
+
+
+### Bug Fixes
+
+* remove WIP status ([463d49d](https://github.com/Cap-go/capacitor-live-reload/commit/463d49dc35666f11c41ce8f0df08b10304a31dfb))
+
 ## 7.1.0 (2025-10-30)
 
 
