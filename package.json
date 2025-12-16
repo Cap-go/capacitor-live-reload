@@ -24,6 +24,7 @@
   "bugs": {
     "url": "https://github.com/Cap-go/capacitor-live-reload/issues"
   },
+  "homepage": "https://capgo.app/docs/plugins/live-reload/",
   "keywords": [
     "capacitor",
     "plugin",
