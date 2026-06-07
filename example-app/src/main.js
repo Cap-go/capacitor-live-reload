@@ -1,3 +1,5 @@
+import { CapacitorUpdater } from '@capgo/capacitor-updater';
+import { Capacitor } from '@capacitor/core';
 import './style.css';
 import { LiveReload } from '@capgo/capacitor-live-reload';
 
@@ -257,3 +259,9 @@ quickConnectButton?.addEventListener('click', async () => {
         appendLog('quick-connect-error', error?.message ?? String(error));
     }
 });
+
+if (Capacitor.isNativePlatform()) {
+  CapacitorUpdater.notifyAppReady().catch((error) => {
+    console.error('Capgo notifyAppReady failed', error);
+  });
+}
