@@ -4,7 +4,7 @@ import UIKit
 
 @objc(LiveReloadPlugin)
 public class LiveReloadPlugin: CAPPlugin, CAPBridgedPlugin {
-    private let pluginVersion: String = "7.1.1"
+    private let pluginVersion: String = "8.0.1"
     public let identifier = "LiveReloadPlugin"
     public let jsName = "LiveReload"
     public let pluginMethods: [CAPPluginMethod] = [
