@@ -1,6 +1,6 @@
 {
   "name": "@capgo/capacitor-live-reload",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "description": "Capacitor plugin to live reload Capacitor apps from a remote Vite dev server.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
