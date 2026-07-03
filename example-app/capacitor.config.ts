@@ -4,7 +4,7 @@ import pkg from './package.json';
 
 const config: CapacitorConfig = {
   appId: 'app.capgo.livereload',
-  appName: 'Live Reload Example',
+  appName: '@capgo/capacitor-live-reload',
   webDir: 'dist',
   plugins: {
     SplashScreen: {
