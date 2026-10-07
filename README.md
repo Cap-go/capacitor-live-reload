@@ -1,11 +1,27 @@
 # @capgo/capacitor-live-reload
-<a href="https://capgo.app/"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-live-reload" alt="Capgo - Instant updates for Capacitor" /></a>
+
+Live reload your Capacitor app from a remote Vite dev server over a WebSocket, so changes show up on a real device as you save.
+
+<a href="https://capgo.app/?ref=plugin_live_reload"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-live-reload" alt="Capgo - Instant updates for Capacitor" /></a>
 
 <div align="center">
-  <h2><a href="https://capgo.app/?ref=plugin_live_reload"> ➡️ Get Instant updates for your App with Capgo</a></h2>
-  <h2><a href="https://capgo.app/consulting/?ref=plugin_live_reload"> Missing a feature? We’ll build the plugin for you 💪</a></h2>
+  <p><b>Capgo</b>: open-source live updates for Ionic and Capacitor apps. Ship OTA fixes and features instantly, without waiting for app store review.</p>
+  <h2><a href="https://capgo.app/register/?ref=plugin_live_reload">➡️ Get started for free</a></h2>
+  <p>14-day unlimited free trial. No credit card required</p>
+  <p><a href="https://capgo.app/consulting/?ref=plugin_live_reload">Missing a feature? We'll build the plugin for you 💪</a></p>
 </div>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Cap-go/capacitor-live-reload/main/assets/github-social-preview.png" alt="@capgo/capacitor-live-reload for Capacitor apps" width="300" />
+</p>
+
+## Key features
+
+- **Server config**: `configureServer()` stores the dev server URL, WebSocket path and headers.
+- **Connection**: `connect()`, `disconnect()` and `getStatus()`, with auto reconnect on native.
+- **Reloads**: `reload()` refreshes the WebView and `reloadFile()` updates a single file when the runtime supports it.
+- **Events**: `reloadEvent` and `statusChange` listeners.
+- **Platforms**: iOS, Android and Web. Work in progress. Your dev server must send reload events over the dedicated WebSocket endpoint. On web, `configureServer()` only uses the server URL and the socket does not reconnect.
 
 WIP: Live reload your Capacitor app from a remote Vite (or compatible) dev server.
 
