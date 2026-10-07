@@ -18,10 +18,10 @@ Live reload your Capacitor app from a remote Vite dev server over a WebSocket, s
 ## Key features
 
 - **Server config**: `configureServer()` stores the dev server URL, WebSocket path and headers.
-- **Connection**: `connect()`, `disconnect()` and `getStatus()`, with auto reconnect.
+- **Connection**: `connect()`, `disconnect()` and `getStatus()`, with auto reconnect on native.
 - **Reloads**: `reload()` refreshes the WebView and `reloadFile()` updates a single file when the runtime supports it.
 - **Events**: `reloadEvent` and `statusChange` listeners.
-- **Platforms**: iOS, Android and Web. Work in progress. Your dev server must send reload events over the dedicated WebSocket endpoint.
+- **Platforms**: iOS, Android and Web. Work in progress. Your dev server must send reload events over the dedicated WebSocket endpoint. On web, `configureServer()` only uses the server URL and the socket does not reconnect.
 
 WIP: Live reload your Capacitor app from a remote Vite (or compatible) dev server.
 
