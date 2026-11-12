@@ -29,7 +29,7 @@ import org.json.JSONObject;
 @CapacitorPlugin(name = "LiveReload")
 public class LiveReloadPlugin extends Plugin {
 
-    private final String pluginVersion = "8.0.13";
+    private final String pluginVersion = "8.0.14";
 
     private static final String TAG = "LiveReload";
 
